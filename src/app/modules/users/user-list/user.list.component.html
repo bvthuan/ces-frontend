@@ -1,0 +1,18 @@
+﻿<h1>Users</h1>
+<div>
+    All users in system:
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fullname</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; let i = index">
+            <th scope="row">{{i}}</th>
+            <td>{{user.username}}</td>
+        </tr>
+    </tbody>
+  </table>
