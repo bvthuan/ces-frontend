@@ -1,11 +1,11 @@
 ﻿const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.ts',
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.ts$/,
         use: ['ts-loader', 'angular2-template-loader'],
         exclude: /node_modules/
@@ -14,6 +14,12 @@ module.exports = {
         test: /\.(html|css)$/,
         loader: 'raw-loader'
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
+      }
     ]
   },
   resolve: {
@@ -30,7 +36,10 @@ module.exports = {
       config: JSON.stringify({
         apiUrl: 'https://localhost:44301'
       })
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: 'assets' }
+    ]),
   ],
   optimization: {
     splitChunks: {

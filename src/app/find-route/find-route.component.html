@@ -1,0 +1,93 @@
+﻿<form [formGroup]="findRouteForm" (ngSubmit)="onSubmit()" class="login-form">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="username">Start</label>
+    <div class="col-sm-10">
+      <p-autoComplete [suggestions]="results" (completeMethod)="search($event)" formControlName="start">
+      </p-autoComplete>
+      <div *ngIf="submitted && f.start.errors" class="invalid-feedback d-block">
+        <div *ngIf="f.start.errors.required">Start is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="username">Destination</label>
+    <div class="col-sm-10">
+      <p-autoComplete [suggestions]="results" (completeMethod)="search($event)" formControlName="destination">
+      </p-autoComplete>
+      <div *ngIf="submitted && f.destination.errors" class="invalid-feedback d-block">
+        <div *ngIf="f.destination.errors.required">Destination is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="transport type">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="transportType" id="cheapest" value="cheapest" checked>
+      <label class="form-check-label" for="cheapest">
+        Cheapest route
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="transportType" id="fastest" value="fastest">
+      <label class="form-check-label" for="fastest">
+        Fastest route
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group text-center">
+    <button [disabled]="loading" class="btn btn-primary btn-login">Find</button>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+  <div class="routes">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Start</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Transportation</th>
+          <th scope="col">Start date</th>
+          <th scope="col">Time (hour)</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Dakar</td>
+          <td>Marrakesh</td>
+          <td>Car</td>
+          <td></td>
+          <td>4</td>
+          <td>$12</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Marrakesh</td>
+          <td>Dafur</td>
+          <td>Air</td>
+          <td>16/5/2019</td>
+          <td>2</td>
+          <td>$50</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="list-group mb-3 float-right">
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Total time(hours)</span>
+        <strong>6</strong>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Total (USD)</span>
+        <strong>$20</strong>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Deliver date</span>
+        <strong>30/6/2019</strong>
+      </li>
+    </ul>
+  </div>
+</form>

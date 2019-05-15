@@ -1,0 +1,35 @@
+h1 {
+  text-align: center;
+  font-size: 80px;
+  font-weight: 700;
+  padding-left: 102px;
+}
+
+.login-form {
+  margin-top: 30px;
+}
+
+.login-form label {
+  font-size: 18px;
+}
+
+.btn-login {
+  width: 140px;
+  margin-top: 10px;
+}
+
+.s-blue {
+  color: #4285F4;
+}
+
+.s-red {
+  color: #EA4636;
+}
+
+.s-yellow {
+  color: #F8BC2E;
+}
+
+.s-green {
+  color: #53A954;
+}
