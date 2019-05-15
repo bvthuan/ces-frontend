@@ -9,6 +9,7 @@ import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { LocalUser } from './_helpers/local.user';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { FindRouteComponent } from './find-route';
@@ -45,6 +46,7 @@ import '../assets/styles';
       useClass: ErrorInterceptor,
       multi: true,
     },
+    LocalUser,
   ],
   bootstrap: [AppComponent]
 })

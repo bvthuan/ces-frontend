@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+<div *ngIf="user" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <!-- <h1 class="my-0 mr-md-auto font-weight-normal">TELSTAR</h1> -->
   <h1>
     <span class="s-blue">T</span>
@@ -16,15 +16,9 @@
     </nav>
   </div>
   <div class="order-lg-2 ml-auto">
-    <!-- <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown" aria-expanded="false">
-      <span class="avatar" style="background-image: url(./assets/images/default.jpg)"></span>
-      <span class="ml-2 d-none d-lg-block">
-        <span class="text-default">Steve</span>
-      </span>
-    </a>-->
     <div class="user">
       <div class="avatar" style="background-image: url(./assets/images/default_avatar.svg)"></div>
-      <div>{{user.firstName}} {{user.lastName}}</div>
+      <div><a (click)="logout()" [routerLink]="['/login']">{{user.firstName}} {{user.lastName}}</a></div>
     </div>
   </div>
 </div>

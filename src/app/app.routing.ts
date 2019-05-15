@@ -1,6 +1,5 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_guards';
 import { FindRouteComponent } from './find-route';
@@ -8,7 +7,8 @@ import { FindRouteComponent } from './find-route';
 const appRoutes: Routes = [
   {
     path: '',
-    component: FindRouteComponent,
+    redirectTo: '/find-route',
+    pathMatch: 'full',
     canActivate: [AuthGuard],
   },
   {
