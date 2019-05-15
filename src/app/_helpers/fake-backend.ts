@@ -9,7 +9,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let testUser = { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' };
+        const testUser = {
+            id: 1,
+            username: 'thongdinh',
+            password: '123',
+            firstName: 'Thong',
+            lastName: 'Dinh',
+        };
 
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {

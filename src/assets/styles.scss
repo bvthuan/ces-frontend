@@ -1,2 +1,10 @@
 @import "./_omega.scss";
 @import "./primeng.scss";
+a {
+  cursor: pointer
+}
+
+body,
+html {
+  height: 100%;
+}

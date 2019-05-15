@@ -10,9 +10,8 @@ export class HeaderComponent {
   public user: User;
   constructor() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(currentUser);
     if (currentUser && currentUser.token) {
-        this.user = currentUser;
+      this.user = currentUser;
     }
   }
 }

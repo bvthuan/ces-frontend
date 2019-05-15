@@ -8,8 +8,8 @@ import { FindRouteComponent } from './find-route';
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [ AuthGuard ],
+    component: FindRouteComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'login', 
@@ -18,6 +18,7 @@ const appRoutes: Routes = [
   {
     path: 'find-route', 
     component: FindRouteComponent,
+    canActivate: [AuthGuard],
   },
   // otherwise redirect to home
   {
