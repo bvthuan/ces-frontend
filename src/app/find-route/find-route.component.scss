@@ -9,6 +9,7 @@
 .find-route {
   padding: 15px;
   border: 1px solid rgba(0, 0, 0, .125);
+  border-top: none !important;
   overflow: hidden;
   margin-top: -17px;
   height: calc(100vh - 81px);
