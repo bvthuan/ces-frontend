@@ -15,6 +15,8 @@ import { AutoCompleteModule } from 'primeng/primeng';
 
 import { HeaderComponent } from './_components/header/header.component';
 
+import '../assets/styles';
+
 @NgModule({
   imports: [
     BrowserModule,

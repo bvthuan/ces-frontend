@@ -1,0 +1,23 @@
+.routes {
+  margin-top: 20px;
+}
+
+.list-group li span {
+  margin-right: 50px;
+}
+
+.find-route {
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  overflow: hidden;
+  margin-top: -17px;
+  height: calc(100vh - 81px);
+}
+
+.ui-autocomplete-input {
+  background-clip: padding-box!important;
+  border: 1px solid #ced4da!important;
+  border-radius: .25rem!important;
+  height: 40px!important;
+  width: 270px!important;
+}

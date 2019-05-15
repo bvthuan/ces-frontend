@@ -14,7 +14,7 @@ import {
 
 @Component({
   templateUrl: 'find-route.component.html',
-  styleUrls: ['./find-route.component.css'],
+  styleUrls: ['./find-route.component.scss'],
 })
 
 export class FindRouteComponent implements OnInit {
