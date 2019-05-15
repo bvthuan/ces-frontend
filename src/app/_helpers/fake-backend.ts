@@ -14,7 +14,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
 
-            // authenticate
+            // authentication
             if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
                 if (request.body.username === testUser.username && request.body.password === testUser.password) {
                     // if login details are valid return 200 OK with a fake jwt token

@@ -1,4 +1,5 @@
-﻿import { NgModule }      from '@angular/core';
+﻿import { FakeBackendInterceptor } from './_helpers/fake-backend';
+import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,7 +37,7 @@ import '../assets/styles';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: FakeBackendInterceptor,
       multi: true,
     },
     {

@@ -1,6 +1,7 @@
 'use strict';
 
 const webpackMerge = require('webpack-merge');
+const webpack = require('webpack');
 
 const commonConfig = require('./webpack.config.common');
 const helpers = require('./helpers');
@@ -36,6 +37,15 @@ module.exports = webpackMerge(commonConfig, {
       exclude: [/node_modules/],
     }]
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      // global app config object
+      config: JSON.stringify({
+        apiUrl: 'https://localhost:44301'
+      })
+    })
+  ],
 
   devServer: {
     historyApiFallback: true,
