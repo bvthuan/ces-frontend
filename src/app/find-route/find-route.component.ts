@@ -1,4 +1,6 @@
-﻿import {
+﻿import { RouteService } from '../_services/route.service';
+import { first } from 'rxjs/operators';
+import {
   Component,
   OnInit,
 } from '@angular/core';
@@ -12,6 +14,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import * as _ from 'lodash';
+
 @Component({
   templateUrl: 'find-route.component.html',
   styleUrls: ['./find-route.component.scss'],
@@ -24,9 +28,13 @@ export class FindRouteComponent implements OnInit {
   returnUrl: string;
   error = '';
 
-  results: Array<any>;
+  cities: Array<any>;
+  routes: Array<any>;
+
+  filteredCities: any[];
 
   constructor(
+    private routeService: RouteService,
     private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -34,8 +42,11 @@ export class FindRouteComponent implements OnInit {
       start: ['', Validators.required],
       destination: ['', Validators.required],
       transportType: ['cheapest', Validators.required],
-  });
+    });
 
+    this.routeService.getCities().pipe(first()).subscribe(cities=> {
+      this.cities = cities; 
+    });
   }
 
   // convenience getter for easy access to form fields
@@ -46,15 +57,24 @@ export class FindRouteComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.findRouteForm.invalid) {
-        return;
+      return;
     }
+
+    const params = {
+      start: this.f.start.value.code,
+      destination: this.f.destination.value.code,
+      transportType: this.f.transportType.value.code,
+    }
+
+    this.routeService.getRoute(params).pipe(first()).subscribe(routes => {
+      this.routes = routes; 
+    });
 
   }
 
   search(event: any) {
-    this.results = [
-      'a',
-      'b'
-    ]
+    this.filteredCities = _.filter(this.cities, function(city) {
+      return _.toLower(city.name).includes(_.toLower(event.query)) || _.toLower(city.code).includes(_.toLower(event.query));
+    });
   }
 }

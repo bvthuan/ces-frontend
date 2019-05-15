@@ -3,7 +3,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="username">Start*</label>
       <div class="col-sm-10">
-        <p-autoComplete [suggestions]="results" (completeMethod)="search($event)" formControlName="start">
+        <p-autoComplete [suggestions]="filteredCities" (completeMethod)="search($event)" formControlName="start" field="name">
         </p-autoComplete>
         <div *ngIf="submitted && f.start.errors" class="invalid-feedback d-block">
           <div *ngIf="f.start.errors.required">Start is required</div>
@@ -13,7 +13,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="username">Destination*</label>
       <div class="col-sm-10">
-        <p-autoComplete [suggestions]="results" (completeMethod)="search($event)" formControlName="destination">
+        <p-autoComplete [suggestions]="filteredCities" (completeMethod)="search($event)" formControlName="destination" field="name">
         </p-autoComplete>
         <div *ngIf="submitted && f.destination.errors" class="invalid-feedback d-block">
           <div *ngIf="f.destination.errors.required">Destination is required</div>
