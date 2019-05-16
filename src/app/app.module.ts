@@ -36,7 +36,7 @@ import '../assets/styles';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: FakeBackendInterceptor,
+      useClass: JwtInterceptor,
       multi: true,
     },
     {

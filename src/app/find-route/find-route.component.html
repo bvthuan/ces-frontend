@@ -1,94 +1,96 @@
-﻿<div class="find-route">
-  <form [formGroup]="findRouteForm" (ngSubmit)="onSubmit()" class="find-route-form">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="username">Start*</label>
-      <div class="col-sm-10">
-        <p-autoComplete [suggestions]="filteredCities" (completeMethod)="search($event)" formControlName="start" field="name">
-        </p-autoComplete>
-        <div *ngIf="submitted && f.start.errors" class="invalid-feedback d-block">
-          <div *ngIf="f.start.errors.required">Start is required</div>
+﻿<div class="container">
+  <div class="find-route">
+    <form [formGroup]="findRouteForm" (ngSubmit)="onSubmit()" class="find-route-form">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="username">Start*</label>
+        <div class="col-sm-10">
+          <p-autoComplete [suggestions]="filteredCities" (completeMethod)="search($event)" formControlName="start" field="name">
+          </p-autoComplete>
+          <div *ngIf="submitted && f.start.errors" class="invalid-feedback d-block">
+            <div *ngIf="f.start.errors.required">Start is required</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="username">Destination*</label>
-      <div class="col-sm-10">
-        <p-autoComplete [suggestions]="filteredCities" (completeMethod)="search($event)" formControlName="destination" field="name">
-        </p-autoComplete>
-        <div *ngIf="submitted && f.destination.errors" class="invalid-feedback d-block">
-          <div *ngIf="f.destination.errors.required">Destination is required</div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="username">Destination*</label>
+        <div class="col-sm-10">
+          <p-autoComplete [suggestions]="filteredCities" (completeMethod)="search($event)" formControlName="destination" field="name">
+          </p-autoComplete>
+          <div *ngIf="submitted && f.destination.errors" class="invalid-feedback d-block">
+            <div *ngIf="f.destination.errors.required">Destination is required</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="transport type">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" formControlName="transportType" id="cheapest" value="cheapest" checked>
-        <label class="form-check-label" for="cheapest">
+      <div class="transport type">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="transportType" id="cheapest" value="cheapest" checked>
+          <label class="form-check-label" for="cheapest">
           Cheapest route
         </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" formControlName="transportType" id="fastest" value="fastest">
-        <label class="form-check-label" for="fastest">
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="transportType" id="fastest" value="fastest">
+          <label class="form-check-label" for="fastest">
           Fastest route
         </label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group text-center">
-      <button [disabled]="loading" class="btn btn-primary btn-login find-button">Find</button>
-      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-      />
-    </div>
-    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      <div class="form-group text-center">
+        <button [disabled]="loading" class="btn btn-primary btn-login find-button">Find</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        />
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 
-    <div class="routes">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Start</th>
-            <th scope="col">Destination</th>
-            <th scope="col">Transportation</th>
-            <th scope="col">Start date</th>
-            <th scope="col">Time (hour)</th>
-            <th scope="col">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngIf="!route.routes.length">
-            <tr *ngIf="!loading">
-              <td colspan="7" class="text-center no-result">No results</td>
+      <div class="routes">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Start</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Transportation</th>
+              <th scope="col">Start date</th>
+              <th scope="col">Time (hour)</th>
+              <th scope="col">Price</th>
             </tr>
-          </ng-container>
-          <ng-container *ngIf="route.routes.length">
-            <tr *ngFor="let route of route.routes">
-              <th scope="row" width="10">{{route.id}}</th>
-              <td>{{route.start}}</td>
-              <td>{{route.destination}}</td>
-              <td>{{route.transportation}}</td>
-              <td>{{route.startDate}}</td>
-              <td>{{route.time}}</td>
-              <td>${{route.price}}</td>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="!route.routes.length">
+              <tr *ngIf="!loading">
+                <td colspan="7" class="text-center no-result">No results</td>
+              </tr>
+            </ng-container>
+            <ng-container *ngIf="route.routes.length">
+              <tr *ngFor="let route of route.routes; let i = index">
+                <th scope="row" width="10">{{i+1}}</th>
+                <td>{{route.start}}</td>
+                <td>{{route.destination}}</td>
+                <td>{{route.transportation}}</td>
+                <td>{{route.startDate | date: 'dd/MM/yyyy'}}</td>
+                <td>{{route.time}}</td>
+                <td>${{route.price}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
 
-      <ul class="list-group mb-3 float-right" *ngIf="route.routes.length">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <p class="my-0">Total time(hours)</p>
-          </div>
-          <span class="text-muted">{{route.totalTime}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <div>
-            <h6 class="my-0">Total Price(USD)</h6>
-          </div>
-          <span class="text-muted"><strong>{{route.totalPrice}}</strong></span>
-        </li>
-      </ul>
-    </div>
-  </form>
+        <ul class="list-group mb-3 float-right" *ngIf="route.routes.length">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <p class="my-0">Total time(hours)</p>
+            </div>
+            <span class="text-muted">{{route.totalTime}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <div>
+              <h6 class="my-0">Total Price(USD)</h6>
+            </div>
+            <span class="text-muted"><strong>{{route.totalPrice}}</strong></span>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
 </div>

@@ -14,6 +14,7 @@
   overflow: hidden;
   margin-top: -17px;
   padding-top: 30px;
+  min-height: calc(100vh - 88px);
 }
 
 .ui-autocomplete-input {
