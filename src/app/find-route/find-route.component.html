@@ -126,7 +126,6 @@
               <th scope="col">Start</th>
               <th scope="col">Destination</th>
               <th scope="col" width="135">Transportation</th>
-              <th scope="col" width="125">Start date</th>
               <th scope="col" width="125">Time (hour)</th>
               <th scope="col" width="70">Price</th>
             </tr>
@@ -134,7 +133,7 @@
           <tbody>
             <ng-container *ngIf="!route.routes.length">
               <tr *ngIf="!loading">
-                <td colspan="7" class="text-center no-result">No results</td>
+                <td colspan="6" class="text-center no-result">No results</td>
               </tr>
             </ng-container>
             <ng-container *ngIf="route.routes.length">
@@ -143,7 +142,6 @@
                 <td>{{getCityName(route.start)}}</td>
                 <td>{{getCityName(route.destination)}}</td>
                 <td>{{route.transportation}}</td>
-                <td>{{route.startDate | date: 'dd/MM/yyyy'}}</td>
                 <td>{{route.time}}</td>
                 <td>${{route.price}}</td>
               </tr>
