@@ -80,7 +80,7 @@ export class FindRouteComponent implements OnInit {
     }
 
     this.loading = true;
-    
+
     this.routeService.getRoute(params).pipe(first()).subscribe(res => {
       this.route = res;
       this.loading = false;
@@ -95,5 +95,10 @@ export class FindRouteComponent implements OnInit {
     this.filteredCities = _.filter(this.cities, function(city) {
       return _.toLower(city.name).includes(_.toLower(event.query)) || _.toLower(city.code).includes(_.toLower(event.query));
     });
+  }
+
+  getCityName(key: string) {
+    const city = _.find(this.cities, function(city) { return city.code === key; });
+    return _.get(city, 'name', '');
   }
 }

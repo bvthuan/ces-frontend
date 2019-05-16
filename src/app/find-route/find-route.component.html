@@ -47,13 +47,13 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">No</th>
+              <th scope="col" width="50">No</th>
               <th scope="col">Start</th>
               <th scope="col">Destination</th>
-              <th scope="col">Transportation</th>
-              <th scope="col">Start date</th>
-              <th scope="col">Time (hour)</th>
-              <th scope="col">Price</th>
+              <th scope="col" width="135">Transportation</th>
+              <th scope="col" width="125">Start date</th>
+              <th scope="col" width="125">Time (hour)</th>
+              <th scope="col" width="70">Price</th>
             </tr>
           </thead>
           <tbody>
@@ -64,9 +64,9 @@
             </ng-container>
             <ng-container *ngIf="route.routes.length">
               <tr *ngFor="let route of route.routes; let i = index">
-                <th scope="row" width="10">{{i+1}}</th>
-                <td>{{route.start}}</td>
-                <td>{{route.destination}}</td>
+                <th scope="row">{{i+1}}</th>
+                <td>{{getCityName(route.start)}}</td>
+                <td>{{getCityName(route.destination)}}</td>
                 <td>{{route.transportation}}</td>
                 <td>{{route.startDate | date: 'dd/MM/yyyy'}}</td>
                 <td>{{route.time}}</td>
