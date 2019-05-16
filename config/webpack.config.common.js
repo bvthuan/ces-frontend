@@ -66,7 +66,7 @@ module.exports = {
     new webpack.DefinePlugin({
       // global app config object
       config: JSON.stringify({
-        apiUrl: isDev ? 'https://wa-tlvn.azurewebsites.net' : 'https://wa-tlvn.azurewebsites.net',
+        apiUrl: isDev ? 'https://localhost:44301' : 'https://wa-tlvn.azurewebsites.net',
       })
     })
   ]

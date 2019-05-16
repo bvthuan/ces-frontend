@@ -50,7 +50,7 @@ export class FindRouteComponent implements OnInit {
       height: ['', [Validators.required, this.validateNumber.bind(this)]],
       length: ['', [Validators.required, this.validateNumber.bind(this)]],
       packageType: ['', Validators.required],
-      transportType: ['cheapest', Validators.required],
+      transportType: ['1', Validators.required],
     });
 
     this.routeService.getCities().pipe(first()).subscribe(cities=> {
