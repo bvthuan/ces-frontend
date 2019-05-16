@@ -8,3 +8,8 @@ body,
 html {
   height: 100%;
 }
+
+.ui-autocomplete-input {
+  min-width: 310px;
+  height: 40px;
+}

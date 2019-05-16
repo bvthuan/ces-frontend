@@ -60,6 +60,7 @@ export class FindRouteComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.error = '';
 
     // stop here if form is invalid
     if (this.findRouteForm.invalid) {
@@ -74,8 +75,12 @@ export class FindRouteComponent implements OnInit {
       transportType: this.f.transportType.value,
     }
 
-    this.loading = true;
+    if(params.start === params.destination) {
+      return this.error = 'Start and Destination must be differrent name';
+    }
 
+    this.loading = true;
+    
     this.routeService.getRoute(params).pipe(first()).subscribe(res => {
       this.route = res;
       this.loading = false;

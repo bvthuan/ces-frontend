@@ -43,7 +43,7 @@
       </div>
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 
-      <div class="routes">
+      <div class="routes" *ngIf="!error">
         <table class="table table-bordered">
           <thead>
             <tr>
