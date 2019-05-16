@@ -34,10 +34,12 @@
 
 nav {
   margin-right: 100px!important;
-}
-
-nav a {
-  font-size: 20px;
+  a {
+    font-size: 20px;
+    &.is-active {
+      color: #007bff!important;
+    }
+  }
 }
 
 .s-blue {
@@ -56,7 +58,7 @@ nav a {
   color: #53A954;
 }
 
-.user{
+.user {
   display: flex;
   flex-direction: column;
   align-items: center;

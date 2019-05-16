@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --inline --hot --progress --port 8080",
     "webpack-dev": "cross-env NODE_ENV=development webpack --mode development --open",
     "webpack-prod": "cross-env NODE_ENV=production webpack --mode production",
     "build:dev": "webpack-dev-server --inline --hot --progress --port 8080",
@@ -26,15 +26,20 @@
     "@angular/router": "~7.2",
     "@types/lodash": "^4.14.129",
     "bootstrap": "^4.3.1",
-    "core-js": "^2.5.5",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "popper.js": "^1.14.7",
     "primeng": "^6.0.0",
-    "rxjs": "^6.1.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@angular/compiler-cli": "~7.2",
+    "@angular/http": "~7.2",
+    "@angular/platform-server": "~7.2",
+    "@angular/upgrade": "~7.2",
+    "core-js": "~2.6",
+    "rxjs": "~6.4"
   },
   "devDependencies": {
+    "@types/core-js": "~2.5",
     "@types/node": "^10.0.4",
     "angular2-template-loader": "^0.6.2",
     "angular-router-loader": "~0.8",
@@ -59,6 +64,7 @@
     "optimize-css-assets-webpack-plugin": "~5.0",
     "file-loader": "^3.0.1",
     "@ngtools/webpack": "~7.3",
-    "cross-env": "~5.2"
+    "cross-env": "~5.2",
+    "uglifyjs-webpack-plugin": "~2.0"
   }
 }

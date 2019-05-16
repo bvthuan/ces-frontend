@@ -16,6 +16,10 @@ import {
 
 import * as _ from 'lodash';
 
+export const routeState: any = {
+  routes: [],
+};
+
 @Component({
   templateUrl: 'find-route.component.html',
   styleUrls: ['./find-route.component.scss'],
@@ -29,7 +33,7 @@ export class FindRouteComponent implements OnInit {
   error = '';
 
   cities: Array<any>;
-  routes: Array<any>;
+  route: any = routeState;
 
   filteredCities: any[];
 
@@ -46,6 +50,8 @@ export class FindRouteComponent implements OnInit {
 
     this.routeService.getCities().pipe(first()).subscribe(cities=> {
       this.cities = cities; 
+    }, (err) => {
+      this.cities = [];
     });
   }
 
@@ -60,14 +66,22 @@ export class FindRouteComponent implements OnInit {
       return;
     }
 
+    this.route = routeState;
+
     const params = {
       start: this.f.start.value.code,
       destination: this.f.destination.value.code,
       transportType: this.f.transportType.value.code,
     }
 
-    this.routeService.getRoute(params).pipe(first()).subscribe(routes => {
-      this.routes = routes; 
+    this.loading = true;
+
+    this.routeService.getRoute(params).pipe(first()).subscribe(res => {
+      this.route = res;
+      this.loading = false;
+    }, (err) => {
+      this.loading = false;
+      this.route = routeState;
     });
 
   }

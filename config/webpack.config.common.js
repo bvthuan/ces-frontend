@@ -1,5 +1,6 @@
 'use strict';
 
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -61,5 +62,12 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' }
     ]),
+
+    new webpack.DefinePlugin({
+      // global app config object
+      config: JSON.stringify({
+        apiUrl: isDev ? 'https://localhost:44301' : 'https://telstar.com/api/v1',
+      })
+    })
   ]
 };

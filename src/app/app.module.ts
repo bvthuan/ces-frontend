@@ -10,7 +10,6 @@ import { routing }        from './app.routing';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LocalUser } from './_helpers/local.user';
-import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { FindRouteComponent } from './find-route';
 import { AutoCompleteModule } from 'primeng/primeng';
@@ -31,7 +30,6 @@ import '../assets/styles';
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     LoginComponent,
     FindRouteComponent,
   ],

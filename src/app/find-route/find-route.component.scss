@@ -13,6 +13,7 @@
   overflow: hidden;
   margin-top: -17px;
   height: calc(100vh - 81px);
+  padding-top: 30px;
 }
 
 .ui-autocomplete-input {
@@ -23,7 +24,7 @@
   width: 270px!important;
 }
 
-.no-result{
+.no-result {
   color: red;
 }
 
@@ -31,6 +32,15 @@
   width: 120px
 }
 
-.ui-autocomplete-input{
+.ui-autocomplete-input {
   border-radius: 6px;
+}
+
+table {
+  table-layout: fixed;
+}
+
+table th,
+table td {
+  overflow: hidden;
 }

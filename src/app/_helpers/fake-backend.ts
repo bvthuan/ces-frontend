@@ -3,6 +3,12 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { LocalUser } from './local.user';
+import {
+  cities,
+  users,
+  routes,
+} from './fake-data';
+import * as _ from 'lodash';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -10,155 +16,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   constructor(private localUser: LocalUser) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const testUser = {
-      id: 1,
-      username: 'thongdinh',
-      password: '123',
-      firstName: 'Thong',
-      lastName: 'Dinh',
-    };
-
-    const cities = [
-      {
-        "code": "DKO",
-        "name": "DE KANARISKE OER"
-      },
-      {
-        "code": "TUN",
-        "name": "TUNIS"
-      },
-      {
-        "code": "SUA",
-        "name": "SUAKIN"
-      },
-      {
-        "code": "TAN",
-        "name": "TANGER"
-      },
-      {
-        "code": "CAI",
-        "name": "CAIRO"
-      },
-      {
-        "code": "KAG",
-        "name": "KAP GUARDAFUI"
-      },
-      {
-        "code": "AMA",
-        "name": "AMATAVE"
-      },
-      {
-        "code": "MOC",
-        "name": "MOCAMBIQUE"
-      },
-      {
-        "code": "KAM",
-        "name": "KAP ST.MARIE"
-      },
-      {
-        "code": "KAP",
-        "name": "KAPSTADEN"
-      },
-      {
-        "code": "HVA",
-        "name": "HVALBUGTEN"
-      },
-      {
-        "code": "HEL",
-        "name": "ST. HELENA"
-      },
-      {
-        "code": "SLA",
-        "name": "SLAVEKYSTEN"
-      },
-      {
-        "code": "GUL",
-        "name": "GULDKYSTEN"
-      },
-      {
-        "code": "SIL",
-        "name": "SIERRA LEONE"
-      },
-      {
-        "code": "DAK",
-        "name": "DAKAR"
-      },
-      {
-        "code": "MAR",
-        "name": "MARRAKESH"
-      },
-      {
-        "code": "SAH",
-        "name": "SAHARA"
-      },
-      {
-        "code": "TIM",
-        "name": "TIMBUKTU"
-      },
-      {
-        "code": "DAR",
-        "name": "DARFUR"
-      },
-      {
-        "code": "CON",
-        "name": "CONGO"
-      },
-      {
-        "code": "OMD",
-        "name": "OMDURMAN"
-      },
-      {
-        "code": "TRI",
-        "name": "TRIPOLI"
-      },
-      {
-        "code": "LUA",
-        "name": "LUANDA"
-      },
-      {
-        "code": "KAB",
-        "name": "KABALO"
-      },
-      {
-        "code": "VIF",
-        "name": "VICTORIAFALDENE"
-      },
-      {
-        "code": "BAG",
-        "name": "BAHREL GHAZAL"
-      },
-      {
-        "code": "ADA",
-        "name": "ADDIS ABEBA"
-      },
-      {
-        "code": "VIS",
-        "name": "VICTORIASOEN"
-      },
-      {
-        "code": "ZAN",
-        "name": "ZANZIBAR"
-      },
-      {
-        "code": "DRA",
-        "name": "DRAGEBJERGET"
-      }
-    ];
-
+    
     // wrap in delayed observable to simulate server api call
     return of(null).pipe(mergeMap(() => {
 
       // authentication
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-        if (request.body.username === testUser.username && request.body.password === testUser.password) {
+        const { username, password } = request.body;
+
+        if (username && password && _.some(users, { username, password })){
           // if login details are valid return 200 OK with a fake jwt token
-          let body = {
-            id: testUser.id,
-            username: testUser.username,
-            firstName: testUser.firstName,
-            lastName: testUser.lastName,
-            token: 'fake-jwt-token'
-          };
+          const body = _.find(users, { username, password });
+          
           return of(new HttpResponse({ status: 200, body }));
         } else {
           // else return 400 bad request
@@ -170,7 +39,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (request.url.endsWith('/users') && request.method === 'GET') {
         // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-          return of(new HttpResponse({ status: 200, body: [testUser] }));
+          return of(new HttpResponse({ status: 200, body: users }));
         } else {
             // return 401 not authorised if token is null or invalid
           return throwError({ error: { message: 'Unauthorised' } });
@@ -189,10 +58,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           });
         }
 
-        console.log('request.headers', request.headers);
         // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-          return of(new HttpResponse({ status: 200, body: [testUser] }));
+
+          const res = {
+            totalTime: 6,
+            totalPrice: 74,
+            deliverDate: '16/5/2019',
+            routes: routes,
+          }
+          return of(new HttpResponse({ status: 200, body: res }));
         } else {
           // return 401 not authorised if token is null or invalid
           return throwError({ error: { message: 'Unauthorised' } });

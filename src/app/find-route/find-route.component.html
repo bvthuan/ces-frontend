@@ -56,9 +56,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colspan="7" class="text-center no-result">No results</td>
-          </tr>
+          <ng-container *ngIf="!route.routes.length">
+            <tr *ngIf="!loading">
+              <td colspan="7" class="text-center no-result">No results</td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="route.routes.length">
+            <tr *ngFor="let route of route.routes">
+              <th scope="row" width="10">{{route.id}}</th>
+              <td>{{route.start}}</td>
+              <td>{{route.destination}}</td>
+              <td>{{route.transportation}}</td>
+              <td>{{route.startDate}}</td>
+              <td>{{route.time}}</td>
+              <td>${{route.price}}</td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
