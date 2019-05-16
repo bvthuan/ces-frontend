@@ -71,7 +71,7 @@ export class FindRouteComponent implements OnInit {
     const params = {
       start: this.f.start.value.code,
       destination: this.f.destination.value.code,
-      transportType: this.f.transportType.value.code,
+      transportType: this.f.transportType.value,
     }
 
     this.loading = true;

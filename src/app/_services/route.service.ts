@@ -9,7 +9,7 @@ export class RouteService {
   constructor(private http: HttpClient) { }
 
   getRoute(options: {}) {
-    return this.http.post<any>(`${config.apiUrl}/api/routes`, {})
+    return this.http.post<any>(`${config.apiUrl}/api/routes`, options)
       .pipe(map(routes => {
         const totalPrice = _.sumBy(routes, function(route: any) { return route.price; });
         const totalTime = _.sumBy(routes, function(route: any) { return route.time; });
