@@ -69,8 +69,8 @@ export class FindRouteComponent implements OnInit {
     this.route = routeState;
 
     const params = {
-      start: this.f.start.value.code,
-      destination: this.f.destination.value.code,
+      start: this.f.start.value.code || this.f.start.value,
+      destination: this.f.destination.value.code || this.f.destination.value,
       transportType: this.f.transportType.value,
     }
 
