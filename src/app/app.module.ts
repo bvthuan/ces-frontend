@@ -15,6 +15,7 @@ import { FindRouteComponent } from './find-route';
 import { AutoCompleteModule } from 'primeng/primeng';
 
 import { HeaderComponent } from './_components/header/header.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import '../assets/styles';
 
@@ -43,6 +44,10 @@ import '../assets/styles';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true,
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
     },
     LocalUser,
   ],
