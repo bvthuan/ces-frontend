@@ -1,30 +1,27 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { User } from "../../_models";
-
+import { AuthenticationService } from '../../_services/authentication.service';
 @Component({
   selector: "app-header",
-  templateUrl: "./header.component.html"
+  templateUrl: "./header.component.html",
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
   public user: User;
-  constructor() {
+
+  constructor(private authService: AuthenticationService) {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(currentUser);
     if (currentUser && currentUser.token) {
-        this.user = currentUser;
+      this.user = currentUser;
     }
+
+    this.authService.action.subscribe((user: any) => {
+      this.user = user;
+    });
+  }
+
+  logout () {
+    this.authService.logout();
+    this.authService.action.emit(null);
   }
 }
-
-
-// export class HomeComponent implements OnInit {
-//   users: User[] = [];
-
-//   constructor(private userService: UserService) {}
-
-//   ngOnInit() {
-//       this.userService.getAll().pipe(first()).subscribe(users => { 
-//           this.users = users; 
-//       });
-//   }
-// }

@@ -1,0 +1,47 @@
+.routes {
+  margin-top: 20px;
+}
+
+.list-group li span {
+  margin-left: 50px;
+  text-align: right;
+}
+
+.find-route {
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-top: none !important;
+  overflow: hidden;
+  margin-top: -17px;
+  padding-top: 30px;
+  min-height: calc(100vh - 88px);
+}
+
+.ui-autocomplete-input {
+  background-clip: padding-box!important;
+  border: 1px solid #ced4da!important;
+  border-radius: .25rem!important;
+  height: 40px!important;
+  width: 270px!important;
+}
+
+.no-result {
+  color: red;
+}
+
+.find-button {
+  width: 120px
+}
+
+.ui-autocomplete-input {
+  border-radius: 6px;
+}
+
+table {
+  table-layout: fixed;
+}
+
+table th,
+table td {
+  overflow: hidden;
+}

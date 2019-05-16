@@ -1,44 +1,9 @@
-﻿const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+﻿'use strict';
 
-module.exports = {
-  entry: './src/main.ts',
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: ['ts-loader', 'angular2-template-loader'],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(html|css)$/,
-        loader: 'raw-loader'
-      },
-    ]
-  },
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      inject: 'body'
-    }),
-    new webpack.DefinePlugin({
-      // global app config object
-      config: JSON.stringify({
-        apiUrl: 'https://localhost:44301'
-      })
-    })
-  ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-    runtimeChunk: true
-  },
-  devServer: {
-    historyApiFallback: true
-  }
-};
+const environment = (process.env.NODE_ENV || 'development').trim();
+
+if (environment === 'development') {
+  module.exports = require('./config/webpack.config.dev');
+} else {
+  module.exports = require('./config/webpack.config.prod');
+}
