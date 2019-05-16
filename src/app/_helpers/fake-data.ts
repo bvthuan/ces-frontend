@@ -174,3 +174,26 @@ export const routes = [
   }
 ];
 
+export const goodTypes = [
+  {
+    code: 'RED',
+    name: 'Recorded Delivery',
+  },
+  {
+    code: 'WEA',
+    name: 'Weapons',
+  },
+  {
+    code: 'LIA',
+    name: 'Live Animals',
+  },
+  {
+    code: 'CAP',
+    name: 'Cautious Parcels',
+  },
+  {
+    code: 'REF',
+    name: 'Refrigerated Goods',
+  },
+]
+

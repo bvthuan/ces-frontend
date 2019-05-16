@@ -4,13 +4,15 @@
       <div class="col-6 offset-sm-3">
         <div class="vertical-center">
           <h1>
-            <span class="s-blue">T</span>
-            <span class="s-red">E</span>
-            <span class="s-yellow">L</span>
-            <span class="s-blue">S</span>
-            <span class="s-green">T</span>
-            <span class="s-red">A</span>
-            <span class="s-yellow">R</span>
+            <a class="logo" [routerLink]="['/']">
+              <span class="s-blue">T</span>
+              <span class="s-red">E</span>
+              <span class="s-yellow">L</span>
+              <span class="s-blue">S</span>
+              <span class="s-green">T</span>
+              <span class="s-red">A</span>
+              <span class="s-yellow">R</span>
+            </a>
           </h1>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
             <div class="form-group row">

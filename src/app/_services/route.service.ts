@@ -29,5 +29,12 @@ export class RouteService {
         return cities;
       }));
   }
+
+  getPackageTypes() {
+    return this.http.get<any>(`${config.apiUrl}/api/goodtypes`)
+      .pipe(map(goodtypes => {
+        return goodtypes;
+      }));
+  }
   
 }

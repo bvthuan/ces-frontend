@@ -1,13 +1,15 @@
 <div *ngIf="user" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <!-- <h1 class="my-0 mr-md-auto font-weight-normal">TELSTAR</h1> -->
   <h1>
-    <span class="s-blue">T</span>
-    <span class="s-red">E</span>
-    <span class="s-yellow">L</span>
-    <span class="s-blue">S</span>
-    <span class="s-green">T</span>
-    <span class="s-red">A</span>
-    <span class="s-yellow">R</span>
+    <a class="logo" [routerLink]="['/']">
+      <span class="s-blue">T</span>
+      <span class="s-red">E</span>
+      <span class="s-yellow">L</span>
+      <span class="s-blue">S</span>
+      <span class="s-green">T</span>
+      <span class="s-red">A</span>
+      <span class="s-yellow">R</span>
+    </a>
   </h1>
   <div class="container">
     <nav class="my-2 my-md-0 mr-md-3 float-right">

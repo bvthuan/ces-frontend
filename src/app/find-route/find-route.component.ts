@@ -4,17 +4,16 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import {
-  Router,
-  ActivatedRoute,
-} from '@angular/router';
+
 import {
   FormBuilder,
   FormGroup,
   Validators,
+  FormControl,
 } from '@angular/forms';
 
 import * as _ from 'lodash';
+import { goodTypes } from '../_helpers/fake-data';
 
 export const routeState: any = {
   routes: [],
@@ -33,6 +32,7 @@ export class FindRouteComponent implements OnInit {
   error = '';
 
   cities: Array<any>;
+  packageTypes: Array<any>;
   route: any = routeState;
 
   filteredCities: any[];
@@ -45,13 +45,24 @@ export class FindRouteComponent implements OnInit {
     this.findRouteForm = this.formBuilder.group({
       start: ['', Validators.required],
       destination: ['', Validators.required],
+      weight: ['', [Validators.required, this.validateNumber.bind(this)]],
+      width: ['', [Validators.required, this.validateNumber.bind(this)]],
+      height: ['', [Validators.required, this.validateNumber.bind(this)]],
+      length: ['', [Validators.required, this.validateNumber.bind(this)]],
+      packageType: ['', Validators.required],
       transportType: ['cheapest', Validators.required],
     });
 
     this.routeService.getCities().pipe(first()).subscribe(cities=> {
-      this.cities = cities; 
+      this.cities = cities;
     }, (err) => {
       this.cities = [];
+    });
+
+    this.routeService.getPackageTypes().pipe(first()).subscribe(packageTypes=> {
+      this.packageTypes = packageTypes;
+    }, (err) => {
+      this.packageTypes = goodTypes;
     });
   }
 
@@ -73,6 +84,13 @@ export class FindRouteComponent implements OnInit {
       start: this.f.start.value.code || this.f.start.value,
       destination: this.f.destination.value.code || this.f.destination.value,
       transportType: this.f.transportType.value,
+      packageType: this.f.packageType.value,
+      packageSizes: {
+        weight: this.f.weight.value,
+        width: this.f.width.value,
+        height: this.f.height.value,
+        length: this.f.length.value,
+      }
     }
 
     if(params.start === params.destination) {
@@ -100,5 +118,18 @@ export class FindRouteComponent implements OnInit {
   getCityName(key: string) {
     const city = _.find(this.cities, function(city) { return city.code === key; });
     return _.get(city, 'name', '');
+  }
+
+  validateNumber(control: FormControl): { [s: string]: boolean } {
+
+    //revised to reflect null as an acceptable value 
+    if (control.value === null) return null;
+  
+    // check to see if the control value is no a number
+    if (isNaN(control.value)) {
+      return { 'NaN': true };
+    }
+  
+    return null; 
   }
 }
