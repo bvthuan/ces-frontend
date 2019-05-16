@@ -3,7 +3,8 @@
 }
 
 .list-group li span {
-  margin-right: 50px;
+  margin-left: 50px;
+  text-align: right;
 }
 
 .find-route {
@@ -12,7 +13,6 @@
   border-top: none !important;
   overflow: hidden;
   margin-top: -17px;
-  height: calc(100vh - 81px);
   padding-top: 30px;
 }
 
