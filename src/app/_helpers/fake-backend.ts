@@ -47,7 +47,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
 
       // get routes
-      if (request.url.endsWith('/routes') && request.method === 'GET') {
+      if (request.url.endsWith('/routes') && request.method === 'POST') {
 
         const currentUser = this.localUser.get();
         if (currentUser) {
@@ -60,14 +60,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-
-          const res = {
-            totalTime: 6,
-            totalPrice: 74,
-            deliverDate: '16/5/2019',
-            routes: routes,
-          }
-          return of(new HttpResponse({ status: 200, body: res }));
+          return of(new HttpResponse({ status: 200, body: routes }));
         } else {
           // return 401 not authorised if token is null or invalid
           return throwError({ error: { message: 'Unauthorised' } });

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Injectable({ providedIn: 'root' })
 export class RouteService {
@@ -8,9 +9,17 @@ export class RouteService {
   constructor(private http: HttpClient) { }
 
   getRoute(options: {}) {
-    return this.http.get<any>(`${config.apiUrl}/api/routes`, {})
+    return this.http.post<any>(`${config.apiUrl}/api/routes`, {})
       .pipe(map(routes => {
-        return routes;
+        const totalPrice = _.sumBy(routes, function(route: any) { return route.price; });
+        const totalTime = _.sumBy(routes, function(route: any) { return route.time; });
+        // => 20
+        
+        return {
+          routes: routes,
+          totalPrice,
+          totalTime,
+        };
       }));
   }
 
